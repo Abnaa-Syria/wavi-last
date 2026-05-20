@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #121212;
+  --foreground: #F0F0F0;
+  --gold: #F5C518;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(245, 197, 24, 0.2);
+  }
+  
+  .gold-border {
+    border: 1px solid rgba(245, 197, 24, 0.15);
+  }
+
+  .glass-card {
+    @apply bg-card gold-border backdrop-blur-md rounded-2xl transition-all duration-500;
+  }
+
+  .btn-gold {
+    @apply bg-gold-gradient text-black font-black px-8 py-3 rounded-xl 
+           hover:shadow-[0_0_30px_rgba(245,197,24,0.4)] transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-outline {
+    @apply border-2 border-gold/50 text-gold font-bold px-8 py-3 rounded-xl 
+           hover:bg-gold/10 transition-all duration-300;
+  }
+}
+
+/* 3D Animations */
+@keyframes rotate3d {
+  from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+.animate-rotate-3d {
+  animation: rotate3d 20s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Grid Pattern */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(245, 197, 24, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 197, 24, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 10px;
+}
