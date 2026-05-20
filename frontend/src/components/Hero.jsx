@@ -73,7 +73,7 @@ export default function Hero() {
           /* Default Static Hero Layout if no active banners exist */
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="z-10 text-center lg:text-right">
-              <h1 className="text-5xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tight text-white">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-[1.28] tracking-tight text-white">
                 منتجاتك الرقمية… <br />
                 <span className="text-gold">في دقائق تكون جاهز</span>
               </h1>
@@ -113,7 +113,7 @@ export default function Hero() {
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gold/10 border border-gold/20 text-gold rounded-full text-xs font-black mb-6 uppercase tracking-widest">
                     🔥 عروض حصرية ومميزة
                   </span>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-[1.2] tracking-tight text-white">
+                  <h1 className="mx-auto max-w-3xl text-4xl sm:text-5xl lg:text-[3.35rem] xl:text-[3.75rem] font-black mb-7 leading-[1.35] tracking-tight text-white lg:mr-0">
                     {banners[currentIndex].titleAr}
                   </h1>
                   {banners[currentIndex].titleEn && (

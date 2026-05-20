@@ -78,14 +78,16 @@ const ProductGrid = () => {
   }, []);
 
   return (
-    <section className="py-24 px-6 bg-grid">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-grid">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-12">
-          <div className="space-y-2">
-            <h2 className="text-4xl font-black text-white">الأكثر مبيعاً</h2>
-            <p className="text-text/50 font-medium">اختر من بين أفضل المنتجات الرقمية المتاحة حالياً</p>
+        <div className="flex flex-col items-center justify-center gap-5 text-center mb-10 sm:mb-12 md:flex-row md:items-end md:justify-between md:text-right">
+          <div className="space-y-3">
+            <h2 className="text-3xl sm:text-4xl font-black leading-[1.35] text-white">الأكثر مبيعاً</h2>
+            <p className="mx-auto max-w-xs text-sm sm:max-w-none sm:text-base text-text/50 font-medium leading-7 md:mx-0">
+              اختر من بين أفضل المنتجات الرقمية المتاحة حالياً
+            </p>
           </div>
-          <Link href="/products" className="text-gold font-black flex items-center gap-2 hover:translate-x-[-8px] transition-transform">
+          <Link href="/products" className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-5 py-2.5 text-sm font-black text-gold transition-all hover:-translate-x-2 hover:bg-gold/15">
             مشاهدة الكل <ChevronLeft size={20} />
           </Link>
         </div>
