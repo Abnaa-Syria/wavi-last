@@ -1,14 +1,16 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, MessageCircle, Menu, X, UserCircle, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
+import { ShoppingCart, MessageCircle, Menu, X, UserCircle, LogOut, LayoutDashboard, ChevronDown, Heart } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { useAuthStore } from '@/store/useAuthStore';
+import { useFavoritesStore } from '@/store/useFavoritesStore';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const { setDrawerOpen, itemCount } = useCartStore();
   const { isAuthenticated, logout, user, isAdmin } = useAuthStore();
+  const { favorites } = useFavoritesStore();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -59,7 +61,7 @@ const Navbar = () => {
                 <span className="text-black font-black text-xl -rotate-12 group-hover:rotate-0 transition-transform duration-300">W</span>
               </div>
               <span className="text-2xl font-black tracking-tight text-yellow-500 leading-none">
-                وافي <span className="text-white/35 text-sm font-bold uppercase ml-1">WAVI</span>
+                وافي
               </span>
             </Link>
 
@@ -160,6 +162,19 @@ const Navbar = () => {
               </div>
             )}
 
+            {/* Favorites Button */}
+            <Link
+              href="/favorites"
+              className="group relative rounded-full border border-white/10 bg-white/5 p-2.5 transition-all hover:bg-white/10"
+            >
+              <Heart size={20} className="text-gray-300 group-hover:text-yellow-500 transition-colors" />
+              {isClient && favorites.length > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-500 text-black text-[10px] font-black rounded-full flex items-center justify-center border-2 border-[#121212]">
+                  {favorites.length}
+                </span>
+              )}
+            </Link>
+
             {/* Cart Button */}
             <button
               onClick={() => setDrawerOpen(true)}
@@ -174,8 +189,16 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Actions (Cart & Hamburger) */}
-          <div className="flex items-center gap-4 xl:hidden">
+          {/* Mobile Actions (Favorites, Cart & Hamburger) */}
+          <div className="flex items-center gap-3 xl:hidden">
+            <Link href="/favorites" className="relative p-2">
+              <Heart size={24} className="text-white" />
+              {isClient && favorites.length > 0 && (
+                <span className="absolute top-0 right-0 w-4 h-4 bg-yellow-500 text-black text-[10px] font-black rounded-full flex items-center justify-center">
+                  {favorites.length}
+                </span>
+              )}
+            </Link>
             <button onClick={() => setDrawerOpen(true)} className="relative p-2">
               <ShoppingCart size={24} className="text-white" />
               {isClient && itemCount() > 0 && (
@@ -192,7 +215,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`xl:hidden fixed inset-0 top-[72px] bg-[#0a0a0a] z-40 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`xl:hidden fixed inset-x-0 top-[72px] bottom-0 bg-[#0a0a0a] z-40 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
         <div className="flex flex-col h-full p-6 overflow-y-auto">
           
           <div className="flex flex-col gap-2 mb-8">

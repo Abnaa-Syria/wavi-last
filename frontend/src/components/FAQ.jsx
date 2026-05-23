@@ -11,10 +11,10 @@ const AccordionItem = ({ question, answer }) => {
   return (
     <div className="border-b border-white/5 last:border-0">
       <button
-        className="w-full py-6 flex items-center justify-between text-right gap-4 group focus:outline-none"
+        className="w-full py-4 sm:py-6 flex items-center justify-between text-right gap-4 group focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={`text-lg sm:text-xl font-black group-hover:text-gold transition-colors duration-200 ${isOpen ? 'text-gold' : 'text-white'}`}>
+        <span className={`text-base sm:text-lg md:text-xl font-black group-hover:text-gold transition-colors duration-200 ${isOpen ? 'text-gold' : 'text-white'}`}>
           {question}
         </span>
         <div className={`p-1.5 rounded-lg bg-white/5 group-hover:bg-gold/10 group-hover:text-gold transition-all duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-text/30'}`}>
@@ -31,7 +31,7 @@ const AccordionItem = ({ question, answer }) => {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="pb-8 text-base sm:text-lg text-text/50 font-medium leading-relaxed pr-2">
+            <div className="pb-4 sm:pb-8 text-sm sm:text-base md:text-lg text-text/50 font-medium leading-relaxed pr-2">
               {answer}
             </div>
           </motion.div>
@@ -67,21 +67,21 @@ export default function FAQ() {
   const activeCategory = groupedCategories.find(cat => cat.id === activeCategoryId);
 
   return (
-    <section className="py-32 px-6 relative bg-background overflow-hidden">
+    <section className="py-16 sm:py-24 lg:py-32 px-6 relative bg-background overflow-hidden">
       {/* Decorative Orbs */}
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gold/5 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-gold/10 border border-gold/20 rounded-2xl mb-4">
-            <HelpCircle className="text-gold" size={24} />
+        <div className="text-center mb-10 sm:mb-20">
+          <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gold/10 border border-gold/20 rounded-xl sm:rounded-2xl mb-3 sm:mb-4">
+            <HelpCircle className="text-gold" size={22} />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 leading-[1.4] text-white">
             الأسئلة الشائعة
           </h2>
-          <p className="text-text/50 text-base sm:text-xl font-semibold max-w-xl mx-auto">
+          <p className="text-text/50 text-sm sm:text-lg md:text-xl font-semibold max-w-xl mx-auto">
             كل ما يدور في ذهنك حول خدمات متجر وافي وإجاباتها الفنية الشاملة
           </p>
         </div>
@@ -145,7 +145,7 @@ export default function FAQ() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="glass-card px-8 py-4 backdrop-blur-xl border border-white/5 rounded-[2.5rem] shadow-2xl bg-card/60"
+              className="glass-card px-4 sm:px-8 py-2 sm:py-4 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl bg-card/60"
             >
               {activeCategory && activeCategory.faqs && activeCategory.faqs.length > 0 ? (
                 activeCategory.faqs.map((faq) => (

@@ -72,23 +72,21 @@ export default function Hero() {
         ) : !hasBanners ? (
           /* Default Static Hero Layout if no active banners exist */
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="z-10 text-center lg:text-right">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-[1.28] tracking-tight text-white">
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-[3rem] font-black mb-6 sm:mb-8 leading-[1.5] sm:leading-[1.4] lg:leading-[1.45] tracking-tight text-white">
                 منتجاتك الرقمية… <br />
                 <span className="text-gold">في دقائق تكون جاهز</span>
               </h1>
-              <p className="text-lg md:text-xl text-text/60 mb-10 max-w-xl mx-auto lg:mr-0 leading-relaxed font-medium">
+              <p className="text-sm sm:text-base md:text-lg text-text/60 mb-6 sm:mb-10 max-w-xl mx-auto lg:mr-0 leading-relaxed font-medium">
                 متجر وافي يوفر لك أفضل الاشتراكات الرقمية، شحن الألعاب، وخدمات السوشيال ميديا. تسليم فوري، دفع آمن، ودعم فني على مدار الساعة.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-16">
-                <Link href="/products" className="btn-gold w-full sm:w-auto text-lg px-10 py-4 text-center">
+              <div className="flex flex-row items-center justify-center lg:justify-start gap-3 w-full sm:w-auto mb-16">
+                <Link href="/products" className="btn-gold flex-1 sm:flex-initial text-sm sm:text-lg px-4 sm:px-10 py-3 sm:py-4 text-center">
                   تسوق الآن
                 </Link>
-                <a href="#how-it-works" className="btn-outline w-full sm:w-auto text-lg px-10 py-4 text-center">
+                <a href="#how-it-works" className="btn-outline flex-1 sm:flex-initial text-sm sm:text-lg px-4 sm:px-10 py-3 sm:py-4 text-center">
                   كيف يعمل؟
                 </a>
               </div>
-            </div>
             <div className="relative h-[450px] w-full flex items-center justify-center animate-float">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gold/10 blur-[120px] -z-10 rounded-full" />
               <div className="w-[450px] h-[450px] relative rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl bg-card">
@@ -113,23 +111,23 @@ export default function Hero() {
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gold/10 border border-gold/20 text-gold rounded-full text-xs font-black mb-6 uppercase tracking-widest">
                     🔥 عروض حصرية ومميزة
                   </span>
-                  <h1 className="mx-auto max-w-3xl text-4xl sm:text-5xl lg:text-[3.35rem] xl:text-[3.75rem] font-black mb-7 leading-[1.35] tracking-tight text-white lg:mr-0">
+                  <h1 className="mx-auto max-w-3xl text-xl sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-[3rem] font-black mb-4 sm:mb-6 leading-[1.5] sm:leading-[1.4] lg:leading-[1.45] tracking-tight text-white lg:mr-0">
                     {banners[currentIndex].titleAr}
                   </h1>
                   {banners[currentIndex].titleEn && (
-                    <h2 className="text-xl sm:text-2xl font-bold text-text-muted mb-8 tracking-wide font-sans">
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold text-text-muted mb-6 tracking-wide font-sans">
                       {banners[currentIndex].titleEn}
                     </h2>
                   )}
-                  <p className="text-base sm:text-lg text-text/60 mb-10 max-w-xl mx-auto lg:mr-0 leading-relaxed font-semibold">
+                  <p className="text-sm sm:text-base md:text-lg text-text/60 mb-6 sm:mb-10 max-w-xl mx-auto lg:mr-0 leading-relaxed font-semibold">
                     نوفر لك أكواد تفعيل وتوصيل فوري وتلقائي بعد الدفع مباشرة مع ضمان كامل فترة التشغيل، ادفع بسهولة عبر وسائل الدفع المفضلة لديك.
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                    <Link href="/products" className="btn-gold w-full sm:w-auto text-lg px-10 py-4 text-center">
+                  <div className="flex flex-row items-center justify-center lg:justify-start gap-3 w-full sm:w-auto">
+                    <Link href="/products" className="btn-gold flex-1 sm:flex-initial text-sm sm:text-lg px-4 sm:px-10 py-3 sm:py-4 text-center">
                       تسوق الآن 🛍️
                     </Link>
-                    <a href="#how-it-works" className="btn-outline w-full sm:w-auto text-lg px-10 py-4 text-center">
+                    <a href="#how-it-works" className="btn-outline flex-1 sm:flex-initial text-sm sm:text-lg px-4 sm:px-10 py-3 sm:py-4 text-center">
                       كيف يعمل؟
                     </a>
                   </div>

@@ -439,7 +439,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen pt-32 pb-24 px-6 max-w-7xl mx-auto font-noto" dir="rtl">
       <div className="mb-12 text-right">
-        <h1 className="text-4xl md:text-5xl font-black mb-4">إتمام الطلب</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4">إتمام الطلب</h1>
         <p className="text-text/50 font-medium text-lg">الرجاء إدخال بياناتك للتسليم الرقمي الفوري للطلب</p>
       </div>
 

@@ -35,15 +35,14 @@ const CategoryCard = ({ id, nameAr, slug }) => {
     <Link href={`/category/${id}`} className="block">
       <motion.div
         whileHover={{ y: -8 }}
-        className="bg-card/60 backdrop-blur-xl border border-white/5 p-8 rounded-[2.5rem] flex flex-col items-center text-center group hover:border-gold/50 transition-all duration-300 cursor-pointer shadow-lg"
+        className="bg-card/60 backdrop-blur-xl border border-white/5 p-3.5 sm:p-6 lg:p-8 rounded-2xl flex flex-col items-center text-center group hover:border-gold/50 transition-all duration-300 cursor-pointer shadow-lg h-full"
       >
-        <div className="mb-6 p-5 rounded-2xl bg-gold/5 group-hover:bg-gold/10 group-hover:scale-110 transition-all duration-300">
+        <div className="mb-3 sm:mb-4 p-3 sm:p-4 rounded-xl bg-gold/5 group-hover:bg-gold/10 group-hover:scale-110 transition-all duration-300">
           <Icon
-            size={48}
-            className="text-gold drop-shadow-[0_0_15px_rgba(245,197,24,0.45)] group-hover:text-gold transition-colors"
+            className="w-8 h-8 sm:w-10 sm:h-10 text-gold drop-shadow-[0_0_15px_rgba(245,197,24,0.45)] group-hover:text-gold transition-colors"
           />
         </div>
-        <h3 className="text-lg font-black text-white group-hover:text-gold transition-colors leading-tight">
+        <h3 className="text-xs sm:text-base md:text-lg font-black text-white group-hover:text-gold transition-colors leading-tight">
           {nameAr}
         </h3>
       </motion.div>
@@ -71,16 +70,16 @@ export default function Categories() {
   }, []);
 
   return (
-    <section className="py-24 px-6 relative">
+    <section className="py-12 sm:py-20 lg:py-24 px-6 relative overflow-hidden">
       <div className="absolute top-0 right-1/3 w-80 h-80 bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="max-w-7xl mx-auto">
         
         {/* Header Title Section */}
-        <div className="text-center mb-16">
-          <span className="text-xs font-black text-gold/80 tracking-widest uppercase mb-3 block">
+        <div className="text-center mb-8 sm:mb-16">
+          <span className="text-[10px] sm:text-xs font-black text-gold/80 tracking-widest uppercase mb-2 sm:mb-3 block">
             🏷️ تصنيفات متجر وافي
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
             تصفح أقسام متجرنا الرقمي
           </h2>
           <p className="text-text-muted text-sm sm:text-base font-semibold mt-3 max-w-xl mx-auto">
@@ -90,20 +89,20 @@ export default function Categories() {
 
         {loading ? (
           /* Premium Coordinated Pulse Skeletons */
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
             {[...Array(5)].map((_, idx) => (
               <div
                 key={idx}
-                className="bg-card/40 border border-white/5 p-8 rounded-[2.5rem] flex flex-col items-center animate-pulse"
+                className="bg-card/40 border border-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl flex flex-col items-center animate-pulse"
               >
-                <div className="w-16 h-16 rounded-2xl bg-white/5 mb-6" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white/5 mb-4" />
                 <div className="h-6 bg-white/5 rounded-full w-24" />
               </div>
             ))}
           </div>
         ) : categories.length === 0 ? (
           /* Fallback static mock layout if database has no active categories yet */
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
             <CategoryCard id="iptv" nameAr="باقات المشاهدة IPTV" slug="iptv-servers" />
             <CategoryCard id="gaming" nameAr="شحن الألعاب" slug="game-codes" />
             <CategoryCard id="social" nameAr="خدمات السوشيال" slug="social-media" />
@@ -112,7 +111,7 @@ export default function Categories() {
           </div>
         ) : (
           /* Dynamic Grid populated with live database categories */
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
             {categories.map((cat) => (
               <CategoryCard key={cat.id} id={cat.id} nameAr={cat.nameAr} slug={cat.slug} />
             ))}

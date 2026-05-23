@@ -58,15 +58,15 @@ const CategoriesPage = () => {
             <LayoutGrid size={40} className="text-yellow-500" />
           </div>
           <div>
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">دليل التصنيفات الرقمية</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter">دليل التصنيفات الرقمية</h1>
             <p className="text-gray-400 font-bold text-lg">تصفح باقة وتصنيفات المنتجات الرقمية والاشتراكات الحصرية المتوفرة في وافي.</p>
           </div>
         </motion.div>
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-white/5 border border-white/5 p-8 rounded-[2.5rem] space-y-4 animate-pulse h-64" />
+              <div key={i} className="bg-white/5 border border-white/5 p-4 sm:p-8 rounded-2xl sm:rounded-[2.5rem] space-y-4 animate-pulse h-48 sm:h-64" />
             ))}
           </div>
         ) : categories.length === 0 ? (
@@ -76,7 +76,7 @@ const CategoriesPage = () => {
             <p className="text-xs text-gray-500 mt-1 font-bold">يرجى العودة لاحقاً بعد تزويد الداتا بيز بالبيانات.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
             {categories.map((cat) => {
               const IconComponent = mapSlugToIcon(cat.slug);
               return (
@@ -86,16 +86,16 @@ const CategoriesPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
-                  className="bg-white/5 backdrop-blur-xl border border-white/5 p-8 rounded-[2.5rem] flex flex-col justify-between group hover:border-yellow-500/30 transition-all duration-500 h-full min-h-[300px]"
+                  className="bg-white/5 backdrop-blur-xl border border-white/5 p-4 sm:p-8 rounded-2xl sm:rounded-[2.5rem] flex flex-col justify-between group hover:border-yellow-500/30 transition-all duration-500 h-full min-h-[220px] sm:min-h-[300px]"
                 >
                   <div>
-                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden">
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 bg-white/5 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 relative overflow-hidden">
                       <div className="absolute inset-0 bg-yellow-500/5 blur-xl group-hover:bg-yellow-500/10 transition-colors" />
-                      <IconComponent size={28} className="text-yellow-500 relative z-10" />
+                      <IconComponent className="w-5 h-5 sm:w-7 sm:h-7 text-yellow-500 relative z-10" />
                     </div>
 
-                    <h3 className="text-2xl font-black text-white mb-2 leading-tight group-hover:text-yellow-500 transition-colors">{cat.nameAr}</h3>
-                    <p className="text-gray-400 font-bold text-sm leading-relaxed mb-6 line-clamp-3">
+                    <h3 className="text-base sm:text-2xl font-black text-white mb-2 leading-tight group-hover:text-yellow-500 transition-colors">{cat.nameAr}</h3>
+                    <p className="text-gray-400 font-bold text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 sm:line-clamp-3">
                       {cat.descriptionAr || `تصفح أرقى عروض وباقات ${cat.nameAr} الحصرية والفاخرة بأسعار مميزة في متجر وافي.`}
                     </p>
                   </div>
@@ -117,7 +117,7 @@ const CategoriesPage = () => {
                     )}
                     <Link 
                       href={`/category/${cat.slug || cat.id}`}
-                      className="py-4 border border-white/10 rounded-2xl text-sm font-black text-white bg-white/5 hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
+                      className="py-2.5 sm:py-4 border border-white/10 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black text-white bg-white/5 hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       تصفح المنتجات
                       <ChevronLeft size={16} />

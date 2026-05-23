@@ -9,11 +9,11 @@ import { getAllProducts } from '@/services/storefront.service.js';
 const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, imageUrl }) => (
   <Link href={`/product/${id}`} className="block h-full">
     <motion.div 
-      whileHover={{ y: -10 }}
-      className="bg-card/60 backdrop-blur-xl border border-white/5 p-6 rounded-[2.5rem] flex flex-col group hover:border-gold/30 transition-all duration-500 h-full"
+      whileHover={{ y: -6 }}
+      className="bg-card/60 backdrop-blur-xl border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col group hover:border-gold/30 transition-all duration-500 h-full"
     >
       {/* Image Area */}
-      <div className="aspect-square bg-white/5 rounded-[2rem] flex items-center justify-center mb-6 relative overflow-hidden">
+      <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gold/5 blur-2xl group-hover:bg-gold/10 transition-colors animate-pulse" />
         {imageUrl ? (
           <Image 
@@ -21,37 +21,39 @@ const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, imageUrl }) => (
             alt={nameAr}
             width={300}
             height={300}
-            className="w-full h-full object-cover rounded-[2rem] transition-transform duration-500 group-hover:scale-110 relative z-10"
+            className="w-full h-full object-cover rounded-lg sm:rounded-xl transition-transform duration-500 group-hover:scale-105 relative z-10"
           />
         ) : (
-          <MonitorPlay size={64} className="text-gold drop-shadow-[0_0_20px_rgba(245,197,24,0.3)] relative z-10" />
+          <MonitorPlay size={36} className="text-gold drop-shadow-[0_0_15px_rgba(245,197,24,0.3)] relative z-10" />
         )}
       </div>
 
       {/* Content */}
-      <div className="flex-1 space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-black uppercase tracking-widest text-gold bg-gold/10 px-3 py-1 rounded-full">
-            {categoryNameAr}
-          </span>
-        </div>
-        <h3 className="text-xl font-black text-white leading-tight line-clamp-2 group-hover:text-gold transition-colors">{nameAr}</h3>
-        
-        <div className="flex items-center justify-between pt-4">
-          <div className="flex flex-col">
-            <span className="text-2xl font-black text-gold">{basePrice} <span className="text-xs text-text/40">ر.س</span></span>
-            <span className="text-[10px] text-text/40 font-bold uppercase">شامل الضريبة</span>
+      <div className="flex-1 space-y-2.5 flex flex-col justify-between">
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[9px] font-black uppercase tracking-widest text-gold bg-gold/10 px-2 py-0.5 rounded-full">
+              {categoryNameAr}
+            </span>
           </div>
-          <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-            <ShoppingCart size={20} />
+          <h3 className="text-xs sm:text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors">{nameAr}</h3>
+        </div>
+        
+        <div className="flex items-center justify-between pt-1.5 mt-auto">
+          <div className="flex flex-col">
+            <span className="text-sm sm:text-[1.05rem] md:text-xl font-black text-gold">{basePrice} <span className="text-[9px] sm:text-[10px] text-text/40">ر.س</span></span>
+            <span className="text-[8px] sm:text-[9px] text-text/40 font-bold uppercase">شامل الضريبة</span>
+          </div>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300 shrink-0">
+            <ShoppingCart size={15} className="w-[15px] h-[15px] sm:w-[18px] sm:h-[18px]" />
           </div>
         </div>
       </div>
 
       {/* Action */}
-      <div className="mt-8 py-4 border border-white/10 rounded-2xl text-sm font-black text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+      <div className="mt-3 py-1.5 sm:py-2.5 border border-white/10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-1.5">
         عرض التفاصيل
-        <ChevronLeft size={16} />
+        <ChevronLeft size={14} />
       </div>
     </motion.div>
   </Link>
@@ -93,27 +95,27 @@ const ProductGrid = () => {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-card/40 border border-white/5 p-6 rounded-[2.5rem] space-y-6 animate-pulse">
-                <div className="aspect-square bg-white/5 rounded-[2rem]" />
-                <div className="h-4 bg-white/10 rounded-md w-1/3" />
-                <div className="h-6 bg-white/10 rounded-md w-2/3" />
-                <div className="flex justify-between items-center pt-4">
-                  <div className="h-8 bg-white/10 rounded-md w-20" />
-                  <div className="w-12 h-12 bg-white/5 rounded-2xl" />
+              <div key={i} className="bg-card/40 border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl space-y-3 animate-pulse">
+                <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl" />
+                <div className="h-2.5 bg-white/10 rounded-md w-1/3" />
+                <div className="h-4 bg-white/10 rounded-md w-2/3" />
+                <div className="flex justify-between items-center pt-1.5">
+                  <div className="h-5 bg-white/10 rounded-md w-14" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl" />
                 </div>
               </div>
             ))}
           </div>
         ) : products.length === 0 ? (
-          <div className="bg-card/40 border border-white/5 rounded-[2.5rem] p-16 text-center flex flex-col items-center justify-center">
+          <div className="bg-card/40 border border-white/5 rounded-2xl p-16 text-center flex flex-col items-center justify-center">
             <LayoutGrid size={64} className="text-gold/40 mb-4 animate-pulse" />
             <h3 className="text-xl font-black text-white">لا توجد منتجات متوفرة حالياً</h3>
             <p className="text-xs text-text/40 mt-1 font-bold">يرجى العودة لاحقاً لتفقد الباقات الجديدة.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
             {products.map((product) => (
               <ProductCard
                 key={product.id}

@@ -197,7 +197,7 @@ const ProductPage = ({ params }) => {
             <span className="text-xs font-black text-gold bg-gold/10 px-4 py-1.5 rounded-full border border-gold/10 uppercase tracking-wider inline-block">
               {product.category?.nameAr || 'منتج رقمي مميز'}
             </span>
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight">{product.nameAr}</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white leading-tight">{product.nameAr}</h1>
             
             <div className="flex items-center gap-6 pt-2">
               <div className="flex flex-col">
@@ -332,7 +332,8 @@ const ProductPage = ({ params }) => {
                     title: product.nameAr,
                     price: Number(activePrice),
                     category: product.category?.nameAr || 'قسم مميز',
-                    iconName: productType === "gaming" ? "Gamepad2" : "MonitorPlay"
+                    iconName: productType === "gaming" ? "Gamepad2" : "MonitorPlay",
+                    imageUrl: product.imageUrl
                   })}
                   className={`w-20 h-[76px] rounded-3xl flex items-center justify-center border backdrop-blur-xl transition-all duration-300 shadow-md ${
                     favorited
@@ -361,7 +362,8 @@ const ProductPage = ({ params }) => {
                     title: product.nameAr,
                     price: Number(activePrice),
                     category: product.category?.nameAr || 'قسم مميز',
-                    iconName: "Tv"
+                    iconName: "Tv",
+                    imageUrl: product.imageUrl
                   })}
                   className={`w-20 h-[76px] rounded-3xl flex items-center justify-center border backdrop-blur-xl transition-all duration-300 shadow-md ${
                     favorited

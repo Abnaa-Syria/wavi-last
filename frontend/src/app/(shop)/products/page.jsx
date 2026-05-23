@@ -44,12 +44,12 @@ const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) 
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          toggleFavorite({ id, title: nameAr, price: basePrice, category: categoryNameAr });
+          toggleFavorite({ id, title: nameAr, price: basePrice, category: categoryNameAr, imageUrl });
         }}
-        className="absolute top-4 left-4 z-20 w-10 h-10 bg-[#121212]/80 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/5 hover:border-yellow-500/30 hover:bg-yellow-500/10 group/btn transition-all duration-300 shadow-md"
+        className="absolute top-2.5 left-2.5 z-20 w-8 h-8 bg-[#121212]/80 backdrop-blur-md rounded-lg flex items-center justify-center border border-white/5 hover:border-yellow-500/30 hover:bg-yellow-500/10 group/btn transition-all duration-300 shadow-md"
       >
         <Heart 
-          size={18} 
+          size={14} 
           className={`transition-colors duration-300 ${
             favorited 
               ? 'text-red-500 fill-red-500' 
@@ -59,8 +59,8 @@ const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) 
       </button>
 
       <Link href={`/product/${id}`} className="block h-full">
-        <div className="bg-white/5 backdrop-blur-xl border border-white/5 p-6 rounded-[2.5rem] flex flex-col group hover:border-yellow-500/30 transition-all duration-500 h-full">
-          <div className="aspect-square bg-white/5 rounded-[2rem] flex items-center justify-center mb-6 relative overflow-hidden">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col group hover:border-yellow-500/30 transition-all duration-500 h-full">
+          <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-yellow-500/5 blur-2xl group-hover:bg-yellow-500/10 transition-colors animate-pulse" />
             {imageUrl ? (
               <Image 
@@ -68,35 +68,35 @@ const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) 
                 alt={nameAr}
                 width={300}
                 height={300}
-                className="w-full h-full object-cover rounded-[2rem] transition-transform duration-500 group-hover:scale-110 relative z-10"
+                className="w-full h-full object-cover rounded-lg sm:rounded-xl transition-transform duration-500 group-hover:scale-105 relative z-10"
               />
             ) : (
-              <IconComponent size={64} className="text-yellow-500 drop-shadow-[0_0_20px_rgba(234,179,8,0.3)] relative z-10 transition-transform duration-500 group-hover:scale-110" />
+              <IconComponent size={36} className="text-yellow-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)] relative z-10 transition-transform duration-500 group-hover:scale-105" />
             )}
           </div>
 
-          <div className="flex-1 space-y-4 flex flex-col justify-between">
-            <div className="space-y-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-500 bg-yellow-500/10 px-3 py-1 rounded-full inline-block">
+          <div className="flex-1 space-y-2.5 flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <span className="text-[9px] font-black uppercase tracking-widest text-yellow-500 bg-yellow-500/10 px-2 py-0.5 rounded-full inline-block">
                 {categoryNameAr || 'منتج مميز'}
               </span>
-              <h3 className="text-xl font-black text-white leading-tight line-clamp-2 group-hover:text-yellow-500 transition-colors">{nameAr}</h3>
+              <h3 className="text-xs sm:text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-yellow-500 transition-colors">{nameAr}</h3>
             </div>
             
-            <div className="flex items-center justify-between pt-4 mt-auto">
+            <div className="flex items-center justify-between pt-1.5 mt-auto">
               <div className="flex flex-col">
-                <span className="text-2xl font-black text-yellow-500">{basePrice} <span className="text-xs text-gray-400">ر.س</span></span>
-                <span className="text-[10px] text-gray-500 font-bold uppercase">شامل الضريبة</span>
+                <span className="text-sm sm:text-[1.05rem] md:text-xl font-black text-yellow-500">{basePrice} <span className="text-[9px] sm:text-[10px] text-gray-400">ر.س</span></span>
+                <span className="text-[8px] sm:text-[9px] text-gray-500 font-bold uppercase">شامل الضريبة</span>
               </div>
-              <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-yellow-500 group-hover:text-black transition-all duration-300">
-                <ShoppingCart size={20} />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-yellow-500 group-hover:text-black transition-all duration-300 shrink-0">
+                <ShoppingCart size={15} className="w-[15px] h-[15px] sm:w-[18px] sm:h-[18px]" />
               </div>
             </div>
           </div>
 
-          <div className="mt-8 py-4 border border-white/10 rounded-2xl text-sm font-black text-white bg-white/5 group-hover:bg-white group-hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+          <div className="mt-3 py-1.5 sm:py-2.5 border border-white/10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black text-white bg-white/5 group-hover:bg-white group-hover:text-black transition-all duration-300 flex items-center justify-center gap-1.5">
             عرض التفاصيل
-            <ChevronLeft size={16} />
+            <ChevronLeft size={14} />
           </div>
         </div>
       </Link>
@@ -218,7 +218,7 @@ function ProductsContent() {
               <LayoutGrid size={40} className="text-yellow-500" />
             </div>
             <div>
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">كتالوج المنتجات</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter">كتالوج المنتجات</h1>
               <p className="text-gray-400 font-bold text-lg">اكتشف الكتالوج الكامل لخدمات ومنتجات وافي ستور</p>
             </div>
           </div>
@@ -355,15 +355,15 @@ function ProductsContent() {
 
             {/* Products Grid */}
             {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="bg-white/5 border border-white/5 p-6 rounded-[2.5rem] space-y-6 animate-pulse">
-                    <div className="aspect-square bg-white/5 rounded-[2rem]" />
-                    <div className="h-4 bg-white/10 rounded-md w-1/3" />
-                    <div className="h-6 bg-white/10 rounded-md w-2/3" />
-                    <div className="flex justify-between items-center pt-4">
-                      <div className="h-8 bg-white/10 rounded-md w-20" />
-                      <div className="w-12 h-12 bg-white/5 rounded-2xl" />
+                  <div key={i} className="bg-white/5 border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl space-y-3 animate-pulse">
+                    <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl" />
+                    <div className="h-2.5 bg-white/10 rounded-md w-1/3" />
+                    <div className="h-4 bg-white/10 rounded-md w-2/3" />
+                    <div className="flex justify-between items-center pt-1.5">
+                      <div className="h-5 bg-white/10 rounded-md w-14" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl" />
                     </div>
                   </div>
                 ))}
@@ -372,7 +372,7 @@ function ProductsContent() {
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="bg-white/5 border border-white/5 rounded-[2.5rem] p-16 text-center flex flex-col items-center justify-center"
+                className="bg-white/5 border border-white/5 rounded-2xl p-16 text-center flex flex-col items-center justify-center"
               >
                 <LayoutGrid size={64} className="text-yellow-500/40 mb-4 animate-pulse" />
                 <h3 className="text-xl font-black text-white">لا توجد منتجات مطابقة لخيارات التصفية</h3>
@@ -387,7 +387,7 @@ function ProductsContent() {
             ) : (
               <motion.div 
                 layout
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
               >
                 <AnimatePresence mode="popLayout">
                   {products.map((product) => (

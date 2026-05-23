@@ -4,17 +4,17 @@ import { Eye, Shield, Headphones } from 'lucide-react';
 
 const Feature = ({ icon: Icon, title, desc }) => (
   <div className="flex flex-col items-center text-center">
-    <div className="w-20 h-20 bg-gold/10 rounded-3xl flex items-center justify-center mb-8 gold-border">
-      <Icon className="text-gold" size={40} />
+    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gold/10 rounded-2xl sm:rounded-3xl flex items-center justify-center mb-4 sm:mb-6 gold-border">
+      <Icon className="text-gold" size={36} />
     </div>
-    <h3 className="text-2xl font-black mb-4">{title}</h3>
-    <p className="text-text/50 font-medium leading-relaxed max-w-sm">{desc}</p>
+    <h3 className="text-xl sm:text-2xl font-black mb-3">{title}</h3>
+    <p className="text-sm sm:text-base text-text/50 font-medium leading-relaxed max-w-sm">{desc}</p>
   </div>
 );
 
 const WhyWavi = () => {
   return (
-    <section className="py-32 px-6 relative overflow-hidden">
+    <section className="py-16 sm:py-24 lg:py-32 px-6 relative overflow-hidden">
       {/* Arabic Pattern BG */}
       <div className="absolute inset-0 opacity-[0.03] -z-10 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -27,12 +27,12 @@ const WhyWavi = () => {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-6xl font-black mb-6">ليش الناس تختارنا؟</h2>
-          <p className="text-text/50 text-xl font-medium">نحن لسنا مجرد متجر، نحن شركاؤك في تجربتك الرقمية.</p>
+        <div className="text-center mb-12 sm:mb-20">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 leading-[1.4]">ليش الناس تختارنا؟</h2>
+          <p className="text-text/50 text-base sm:text-lg md:text-xl font-medium">نحن لسنا مجرد متجر، نحن شركاؤك في تجربتك الرقمية.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
           <Feature 
             icon={Eye}
             title="تجربة شراء واضحة"

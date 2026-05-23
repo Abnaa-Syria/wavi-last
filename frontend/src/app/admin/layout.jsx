@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore, isAdminPanelRole, markAuthHydrated } from '@/store/useAuthStore';
 import { toast } from 'react-hot-toast';
 import api from '@/lib/api';
+import DashboardFooter from '@/components/DashboardFooter';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -275,6 +276,9 @@ export default function AdminLayout({ children }) {
         <main className="flex-1 p-8">
           {children}
         </main>
+
+        {/* Global Developer Credit Footer */}
+        <DashboardFooter />
 
       </div>
     </div>

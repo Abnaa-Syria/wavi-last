@@ -83,7 +83,7 @@ export default function ProfilePage() {
       dir="rtl"
     >
       <div>
-        <h1 className="text-3xl md:text-4xl font-black text-white mb-2">البيانات الشخصية</h1>
+        <h1 className="text-xl sm:text-2xl md:text-4xl font-black text-white mb-2">البيانات الشخصية</h1>
         <p className="text-text/50 font-medium">يمكنك تحديث بياناتك الشخصية من هنا</p>
       </div>
 

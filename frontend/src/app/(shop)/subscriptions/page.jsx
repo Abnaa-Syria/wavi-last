@@ -18,42 +18,44 @@ const ProductCard = ({ id, title, category, price }) => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        whileHover={{ y: -10 }}
-        className="bg-card/60 backdrop-blur-xl border border-white/5 p-6 rounded-[2.5rem] flex flex-col group hover:border-gold/30 transition-all duration-500 h-full"
+        whileHover={{ y: -6 }}
+        className="bg-card/60 backdrop-blur-xl border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col group hover:border-gold/30 transition-all duration-500 h-full"
       >
-        <div className="aspect-square bg-white/5 rounded-[2rem] flex items-center justify-center mb-6 relative overflow-hidden">
+        <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-gold/5 blur-2xl group-hover:bg-gold/10 transition-colors animate-pulse" />
           <Image 
             src={finalImageUrl}
             alt={title}
             width={300}
             height={300}
-            className="w-full h-full object-cover rounded-[2rem] transition-transform duration-500 group-hover:scale-110 relative z-10"
+            className="w-full h-full object-cover rounded-lg sm:rounded-xl transition-transform duration-500 group-hover:scale-105 relative z-10"
           />
         </div>
 
-        <div className="flex-1 space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase tracking-widest text-gold bg-gold/10 px-3 py-1 rounded-full">
-              {category}
-            </span>
-          </div>
-          <h3 className="text-xl font-black text-white leading-tight line-clamp-2 group-hover:text-gold transition-colors">{title}</h3>
-          
-          <div className="flex items-center justify-between pt-4">
-            <div className="flex flex-col">
-              <span className="text-2xl font-black text-gold">{price} <span className="text-xs text-text/40">ر.س</span></span>
-              <span className="text-[10px] text-text/40 font-bold uppercase">شامل الضريبة</span>
+        <div className="flex-1 space-y-2.5 flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[9px] font-black uppercase tracking-widest text-gold bg-gold/10 px-2 py-0.5 rounded-full">
+                {category}
+              </span>
             </div>
-            <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-              <ShoppingCart size={20} />
+            <h3 className="text-xs sm:text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors">{title}</h3>
+          </div>
+          
+          <div className="flex items-center justify-between pt-1.5 mt-auto">
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-[1.05rem] md:text-xl font-black text-gold">{price} <span className="text-[9px] sm:text-[10px] text-text/40">ر.س</span></span>
+              <span className="text-[8px] sm:text-[9px] text-text/40 font-bold uppercase">شامل الضريبة</span>
+            </div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300 shrink-0">
+              <ShoppingCart size={15} className="w-[15px] h-[15px] sm:w-[18px] sm:h-[18px]" />
             </div>
           </div>
         </div>
 
-        <div className="mt-8 py-4 border border-white/10 rounded-2xl text-sm font-black text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+        <div className="mt-3 py-1.5 sm:py-2.5 border border-white/10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-1.5">
           عرض التفاصيل
-          <ChevronLeft size={16} />
+          <ChevronLeft size={14} />
         </div>
       </motion.div>
     </Link>
@@ -80,13 +82,13 @@ export default function SubscriptionsPage() {
               <MonitorPlay size={40} className="text-gold" />
             </div>
             <div>
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">باقات المشاهدة</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter">باقات المشاهدة</h1>
               <p className="text-text/50 font-bold text-lg">أفضل اشتراكات IPTV ومنصات البث الترفيهية</p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
           {subscriptionProducts.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}

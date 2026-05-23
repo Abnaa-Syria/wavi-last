@@ -113,7 +113,7 @@ export default function CartPage() {
     <div className="min-h-screen pt-32 pb-24 px-6 max-w-7xl mx-auto font-noto text-right" dir="rtl">
       {/* Title Header */}
       <div className="mb-12">
-        <h1 className="text-3xl md:text-5xl font-black text-white mb-2">سلة المشتريات</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-2">سلة المشتريات</h1>
         <p className="text-text/50 font-medium">مراجعة عناصر سلتك وإضافة متطلبات التشغيل للطلب</p>
       </div>
 

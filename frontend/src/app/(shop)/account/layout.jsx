@@ -35,7 +35,7 @@ export default function AccountLayout({ children }) {
     { name: 'البيانات الشخصية', href: '/account/profile', icon: User },
     { name: 'سجل الطلبات', href: '/account/orders', icon: Package },
     { name: 'الدعم الفني', href: '/account/tickets', icon: HelpCircle },
-    { name: 'قائمة المفضلة', href: '/account/favorites', icon: Heart },
+    { name: 'قائمة المفضلة', href: '/favorites', icon: Heart },
   ];
 
 

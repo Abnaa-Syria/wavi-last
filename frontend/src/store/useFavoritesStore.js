@@ -17,6 +17,7 @@ export const useFavoritesStore = create(
           title: product.title,
           price: product.price,
           category: product.category || 'عام',
+          imageUrl: product.imageUrl || null,
           iconName: product.iconName || (product.category === 'شحن الألعاب' ? 'Gamepad2' : 'MonitorPlay')
         }];
 
