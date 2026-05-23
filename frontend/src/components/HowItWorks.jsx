@@ -13,8 +13,9 @@ const Step = ({ num, title, desc }) => (
 
 const HowItWorks = () => {
   return (
-    <section className="py-16 sm:py-24 lg:py-32 px-6 bg-card/30 overflow-hidden">
+    <section id="how-it-works" className="py-16 sm:py-24 lg:py-32 px-6 bg-card/30 overflow-hidden">
       <div className="max-w-7xl mx-auto">
+
         <div className="text-center mb-12 sm:mb-20">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 leading-[1.4]">كيف تشتري وتستلم؟</h2>
           <p className="text-text/50 text-base sm:text-lg md:text-xl font-medium">خطوات بسيطة تفصلك عن منتجك الرقمي المفضل.</p>

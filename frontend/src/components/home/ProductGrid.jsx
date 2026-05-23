@@ -1,63 +1,111 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MonitorPlay, ChevronLeft, ShoppingCart, LayoutGrid } from 'lucide-react';
+import { MonitorPlay, ChevronLeft, ShoppingCart, LayoutGrid, Heart, GitCompare } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllProducts } from '@/services/storefront.service.js';
+import { useFavoritesStore } from '@/store/useFavoritesStore';
+import { useCompareStore } from '@/store/useCompareStore';
 
-const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, imageUrl }) => (
-  <Link href={`/product/${id}`} className="block h-full">
-    <motion.div 
-      whileHover={{ y: -6 }}
-      className="bg-card/60 backdrop-blur-xl border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col group hover:border-gold/30 transition-all duration-500 h-full"
-    >
-      {/* Image Area */}
-      <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gold/5 blur-2xl group-hover:bg-gold/10 transition-colors animate-pulse" />
-        {imageUrl ? (
-          <Image 
-            src={imageUrl} 
-            alt={nameAr}
-            width={300}
-            height={300}
-            className="w-full h-full object-cover rounded-lg sm:rounded-xl transition-transform duration-500 group-hover:scale-105 relative z-10"
-          />
-        ) : (
-          <MonitorPlay size={36} className="text-gold drop-shadow-[0_0_15px_rgba(245,197,24,0.3)] relative z-10" />
-        )}
-      </div>
+const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, imageUrl, slug }) => {
+  const { toggleFavorite, isFavorite } = useFavoritesStore();
+  const { toggleCompare, isInCompare } = useCompareStore();
+  const favorited = isFavorite(id);
+  const inCompare = isInCompare(id);
 
-      {/* Content */}
-      <div className="flex-1 space-y-2.5 flex flex-col justify-between">
-        <div className="space-y-1.5">
-          <div className="flex items-center gap-1.5">
-            <span className="text-[9px] font-black uppercase tracking-widest text-gold bg-gold/10 px-2 py-0.5 rounded-full">
-              {categoryNameAr}
-            </span>
-          </div>
-          <h3 className="text-xs sm:text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors">{nameAr}</h3>
-        </div>
-        
-        <div className="flex items-center justify-between pt-1.5 mt-auto">
-          <div className="flex flex-col">
-            <span className="text-sm sm:text-[1.05rem] md:text-xl font-black text-gold">{basePrice} <span className="text-[9px] sm:text-[10px] text-text/40">ر.س</span></span>
-            <span className="text-[8px] sm:text-[9px] text-text/40 font-bold uppercase">شامل الضريبة</span>
-          </div>
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300 shrink-0">
-            <ShoppingCart size={15} className="w-[15px] h-[15px] sm:w-[18px] sm:h-[18px]" />
-          </div>
-        </div>
-      </div>
+  return (
+    <div className="relative group h-full">
+      {/* Heart Toggle Button */}
+      <button 
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFavorite({ id, title: nameAr, price: basePrice, category: categoryNameAr, imageUrl });
+        }}
+        className="absolute top-2.5 left-2.5 z-20 w-8 h-8 bg-[#121212]/80 backdrop-blur-md rounded-lg flex items-center justify-center border border-white/5 hover:border-gold/30 hover:bg-gold/10 group/btn transition-all duration-300 shadow-md"
+      >
+        <Heart 
+          size={14} 
+          className={`transition-colors duration-300 ${
+            favorited 
+              ? 'text-red-500 fill-red-500' 
+              : 'text-gray-400 group-hover/btn:text-red-400'
+          }`} 
+        />
+      </button>
 
-      {/* Action */}
-      <div className="mt-3 py-1.5 sm:py-2.5 border border-white/10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-1.5">
-        عرض التفاصيل
-        <ChevronLeft size={14} />
-      </div>
-    </motion.div>
-  </Link>
-);
+      {/* Compare Toggle Button */}
+      <button 
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleCompare({ id, title: nameAr, price: basePrice, category: categoryNameAr, imageUrl, slug });
+        }}
+        className={`absolute top-12 left-2.5 z-20 w-8 h-8 rounded-lg flex items-center justify-center border backdrop-blur-md transition-all duration-300 shadow-md ${
+          inCompare 
+            ? 'bg-gold/20 border-gold/40 text-gold' 
+            : 'bg-[#121212]/80 border-white/5 text-gray-400 hover:border-gold/30 hover:bg-gold/10 hover:text-gold'
+        }`}
+        title="مقارنة المنتج"
+      >
+        <GitCompare size={14} className={inCompare ? 'scale-110' : ''} />
+      </button>
+
+      <Link href={`/product/${id}`} className="block h-full">
+        <motion.div 
+          whileHover={{ y: -6 }}
+          className="bg-card/60 backdrop-blur-xl border border-white/5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col group hover:border-gold/30 transition-all duration-500 h-full"
+        >
+          {/* Image Area */}
+          <div className="aspect-square bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gold/5 blur-2xl group-hover:bg-gold/10 transition-colors animate-pulse" />
+            {imageUrl ? (
+              <Image 
+                src={imageUrl} 
+                alt={nameAr}
+                width={300}
+                height={300}
+                className="w-full h-full object-cover rounded-lg sm:rounded-xl transition-transform duration-500 group-hover:scale-105 relative z-10"
+              />
+            ) : (
+              <MonitorPlay size={36} className="text-gold drop-shadow-[0_0_15px_rgba(245,197,24,0.3)] relative z-10" />
+            )}
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 space-y-2.5 flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[9px] font-black uppercase tracking-widest text-gold bg-gold/10 px-2 py-0.5 rounded-full">
+                  {categoryNameAr}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors">{nameAr}</h3>
+            </div>
+            
+            <div className="flex items-center justify-between pt-1.5 mt-auto">
+              <div className="flex flex-col">
+                <span className="text-sm sm:text-[1.05rem] md:text-xl font-black text-gold">{basePrice} <span className="text-[9px] sm:text-[10px] text-text/40">ر.س</span></span>
+                <span className="text-[8px] sm:text-[9px] text-text/40 font-bold uppercase">شامل الضريبة</span>
+              </div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300 shrink-0">
+                <ShoppingCart size={15} className="w-[15px] h-[15px] sm:w-[18px] sm:h-[18px]" />
+              </div>
+            </div>
+          </div>
+
+          {/* Action */}
+          <div className="mt-3 py-1.5 sm:py-2.5 border border-white/10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-1.5">
+            عرض التفاصيل
+            <ChevronLeft size={14} />
+          </div>
+        </motion.div>
+      </Link>
+    </div>
+  );
+};
+
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);

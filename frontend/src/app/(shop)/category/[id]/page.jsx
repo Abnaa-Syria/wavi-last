@@ -1,11 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, ShoppingCart, LayoutGrid, MonitorPlay, Gamepad2, Youtube, Tv, Rocket, Star, ChevronLeft } from 'lucide-react';
+import { Heart, ShoppingCart, LayoutGrid, MonitorPlay, Gamepad2, Youtube, Tv, Rocket, Star, ChevronLeft, GitCompare } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCartStore } from '@/store/useCartStore';
 import { useFavoritesStore } from '@/store/useFavoritesStore';
+import { useCompareStore } from '@/store/useCompareStore';
 import { toast } from 'react-hot-toast';
 import { getAllProducts, getStoreCategories } from '@/services/storefront.service.js';
 
@@ -28,7 +29,9 @@ const mapSlugToIcon = (slug = '') => {
 
 const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) => {
   const { toggleFavorite, isFavorite } = useFavoritesStore();
+  const { toggleCompare, isInCompare } = useCompareStore();
   const favorited = isFavorite(id);
+  const inCompare = isInCompare(id);
   const IconComponent = mapSlugToIcon(slug);
 
   return (
@@ -50,6 +53,23 @@ const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) 
               : 'text-text/40 group-hover/btn:text-red-400'
           }`} 
         />
+      </button>
+
+      {/* Compare Toggle Button */}
+      <button 
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleCompare({ id, title: nameAr, price: basePrice, category: categoryNameAr, imageUrl, slug });
+        }}
+        className={`absolute top-12 left-2.5 z-20 w-8 h-8 rounded-lg flex items-center justify-center border backdrop-blur-md transition-all duration-300 shadow-md ${
+          inCompare 
+            ? 'bg-gold/20 border-gold/40 text-gold' 
+            : 'bg-[#121212]/80 border-white/5 text-gray-400 hover:border-gold/30 hover:bg-gold/10 hover:text-gold'
+        }`}
+        title="مقارنة المنتج"
+      >
+        <GitCompare size={14} className={inCompare ? 'scale-110' : ''} />
       </button>
 
       <Link href={`/product/${id}`} className="block h-full">

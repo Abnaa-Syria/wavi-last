@@ -2,11 +2,12 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useFavoritesStore } from '@/store/useFavoritesStore';
+import { useCompareStore } from '@/store/useCompareStore';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { 
   Heart, MonitorPlay, Gamepad2, Tv, ChevronLeft, ShoppingCart, 
-  Search, LayoutGrid, Sparkles, Filter, SlidersHorizontal, ArrowUpDown, X 
+  Search, LayoutGrid, Sparkles, Filter, SlidersHorizontal, ArrowUpDown, X, GitCompare 
 } from 'lucide-react';
 import Link from 'next/link';
 import { getAllProducts, getStoreCategories } from '@/services/storefront.service.js';
@@ -27,16 +28,17 @@ const mapSlugToIcon = (slug = '') => {
 
 const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) => {
   const { toggleFavorite, isFavorite } = useFavoritesStore();
+  const { toggleCompare, isInCompare } = useCompareStore();
   const favorited = isFavorite(id);
+  const inCompare = isInCompare(id);
   const IconComponent = mapSlugToIcon(slug);
 
   return (
     <motion.div 
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 15 }}
+      transition={{ duration: 0.25 }}
       className="relative group h-full"
     >
       {/* Heart Toggle Button */}
@@ -56,6 +58,23 @@ const ProductCard = ({ id, nameAr, categoryNameAr, basePrice, slug, imageUrl }) 
               : 'text-gray-400 group-hover/btn:text-red-400'
           }`} 
         />
+      </button>
+
+      {/* Compare Toggle Button */}
+      <button 
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleCompare({ id, title: nameAr, price: basePrice, category: categoryNameAr, imageUrl, slug });
+        }}
+        className={`absolute top-12 left-2.5 z-20 w-8 h-8 rounded-lg flex items-center justify-center border backdrop-blur-md transition-all duration-300 shadow-md ${
+          inCompare 
+            ? 'bg-yellow-500/20 border-yellow-500/40 text-yellow-500' 
+            : 'bg-[#121212]/80 border-white/5 text-gray-400 hover:border-yellow-500/30 hover:bg-yellow-500/10 hover:text-yellow-500'
+        }`}
+        title="مقارنة المنتج"
+      >
+        <GitCompare size={14} className={inCompare ? 'scale-110' : ''} />
       </button>
 
       <Link href={`/product/${id}`} className="block h-full">
@@ -238,10 +257,10 @@ function ProductsContent() {
         </div>
 
         {/* Double-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+        <div className="flex flex-col lg:grid lg:grid-cols-4 gap-8">
           
           {/* 1. Sticky Sidebar Filter (Desktop) */}
-          <div className="lg:col-span-1 bg-white/5 border border-white/5 p-6 rounded-[2.5rem] backdrop-blur-xl sticky top-24 space-y-8">
+          <div className="lg:col-span-1 bg-white/5 border border-white/5 p-6 rounded-[2.5rem] backdrop-blur-xl lg:sticky lg:top-24 space-y-8">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2 font-black text-lg">
                 <SlidersHorizontal size={18} className="text-yellow-500" />
@@ -385,11 +404,10 @@ function ProductsContent() {
                 </button>
               </motion.div>
             ) : (
-              <motion.div 
-                layout
+              <div 
                 className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
               >
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence>
                   {products.map((product) => (
                     <ProductCard
                       key={product.id}
@@ -402,12 +420,13 @@ function ProductsContent() {
                     />
                   ))}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             )}
 
           </div>
 
         </div>
+
 
       </div>
     </div>

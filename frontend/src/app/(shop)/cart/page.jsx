@@ -248,7 +248,7 @@ export default function CartPage() {
             </div>
 
             {/* Sidebar Pricing Breakdown */}
-            <div className="bg-card/60 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-8 shadow-xl space-y-8 sticky top-32">
+            <div className="bg-card/60 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-8 shadow-xl space-y-8 lg:sticky lg:top-32">
               <div>
                 <h3 className="text-xl font-black text-white mb-2">خلاصة السلة</h3>
                 <p className="text-text/40 text-xs font-bold">تفاصيل الأسعار واشتراكات طلبك الرقمي</p>
